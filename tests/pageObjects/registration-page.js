@@ -29,7 +29,7 @@ exports.Registration = class Registration {
     this.countryDropD = page.locator('#react-select-2-placeholder');
     this.ukraineCountry = page.getByText('Ukraine', { exact: true });
 
-    this.annualEnergElectricFld = page.getByPlaceholder('Annual Energy Consumption - Electricity (kW.h)')
+    this.annualEnergElectricFld = page.getByPlaceholder('Annual Energy Consumption - Electricity (kW.h)');
     todo //add the dropdowns
     this.insertelEctrisityDropD = page.locator('#react-select-3-placeholder');
     this.europe = page.getByText('Europe', { exact: true });
@@ -49,6 +49,9 @@ exports.Registration = class Registration {
     this.phoneNumResErr = page.getByText('Phone number is required');
     this.passwordErrorFirst = page.getByText('Password is too weak').first();
     this.passwordErrorNth1 = page.getByText('Password is too weak').nth(1);
+
+    this.UserOreadyExistErrorAllert =  page.getByRole('alert');
+    this.userOlreadyExsErr = page.getByText('User with this email already exists.');
   }
 
 
