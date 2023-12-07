@@ -23,6 +23,7 @@ test.only('Register a user with existing email', async ({ page }) => {
     await registrPage.passwordFld.fill(password);
     await registrPage.confirmPasswordFld.fill(password);
     await registrPage.nextStepBtn.click();
+    
     expect (await page.locator('.steps__bg')).toBeTruthy();
     expect (await page).toHaveURL('https://dar-ui-supplier.dev-test.pro/auth/register');
 
@@ -30,20 +31,19 @@ test.only('Register a user with existing email', async ({ page }) => {
     await registrPage.factoryNameFld.fill(factoryName);
     await registrPage.cityFld.fill(email);
 
-    //Drop down
-    await registrPage.countryDropD.click(); 
+    await registrPage.countryDropD.click();  //Drop down
     await registrPage.ukraineCountry.click(); // paramiter of dropdown
     
     await registrPage.latitudeFld.fill(email);
     await registrPage.longitudeFld.fill(email);
     await registrPage.annualEnergElectricFld.fill(numbersVallues);
-    //Drop down
-    await registrPage.insertelEctrisityDropD.click(); 
+  
+    await registrPage.insertelEctrisityDropD.click();  //Drop down
     await registrPage.europe.click(); // paramiter of dropdown
 
     await registrPage.annualEnergGasFld.fill(numbersVallues);
-    //Drop down
-    await registrPage.insertGasDropD.click(); 
+    
+    await registrPage.insertGasDropD.click(); //Drop down
     await registrPage.bioDisel.click(); // paramiter of dropdown
 
     await registrPage.averegeOutpTonnageFld.fill('23');
@@ -53,4 +53,13 @@ test.only('Register a user with existing email', async ({ page }) => {
 
     expect (await registrPage.UserOreadyExistErrorAllert).toBeDefined();
     expect (await registrPage.userOlreadyExsErr).toBeDefined();
-  });
+});
+  
+
+//register with valid data
+//register with alreafy exsisted email
+//register with when all fields is empty
+//register with when factory fields are empty
+//register when the firlds fill with invalid data String / Int...
+//register when filling only required fields
+//register when valid user, deny permision from admin and try to login
