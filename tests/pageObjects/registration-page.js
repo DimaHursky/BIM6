@@ -19,6 +19,7 @@ exports.Registration = class Registration {
     this.passwordFld = page.getByPlaceholder('Password', { exact: true });
     this.confirmPasswordFld = page.getByPlaceholder('Confirm password');
     this.nextStepBtn = page.getByRole('button', { name: 'Next step' });
+    this.finishBtn = page.getByRole('button', { name: 'Finish' });
 
     //Register page factories details
     this.factoryNameFld = page.getByPlaceholder('Factory name');
@@ -45,14 +46,23 @@ exports.Registration = class Registration {
     //Errod messages
     this.fullNameErr = page.getByText('Full name is required');
     this.emailErr = page.getByText('E-mail is invalid');
-    this.adressReqErr = page.getByText('Address is required');
+    this.addressReqErr = page.getByText('Address is required');
     this.phoneNumResErr = page.getByText('Phone number is required');
     this.passwordErrorFirst = page.getByText('Password is too weak').first();
     this.passwordErrorNth1 = page.getByText('Password is too weak').nth(1);
 
     this.UserOreadyExistErrorAllert =  page.getByRole('alert');
     this.userOlreadyExsErr = page.getByText('User with this email already exists.');
+
+    this.countryIsReqErr = page.getByText('Country is required');
+    this.cityIeReqErr = page.getByText('City is required');
+    this.latitudeIeReqErr = page.getByText('Latitude is required');
+    this.longitudeIsReqErr = page.getByText('Longitude is required');
+    this.annualEnergReqErrFirst = page.getByText('Annual Energy Consumption is').first();
+    this.electricityLocIsReqErr  = page.getByText('Electricity Location is');
+    this.annualEnergReqErrNth1 = page.getByText('Annual Energy Consumption is').nth(1);
+    this.gasTypeReqErr  = page.getByText('Gas Type is required');
+    this.avarageOutputTonageReqErr  = page.getByText('Average output tonnage of all products is required');
+    this.renewableEnergyIsReqErr  = page.getByText('Renewable Energy is required');
   }
-
-
 }
