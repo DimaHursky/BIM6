@@ -3,13 +3,8 @@ const { todo } = require('node:test');
 
 exports.Registration = class Registration {
 
-  // /**
-  //  * @param {import('@playwright/test').Page} page
-  //  */
   constructor(page) {
     this.page = page;
-    // this. = page.goto('https://dar-ui-supplier.dev-test.pro/');
-    // this. = page.goto('https://dar-ui-supplier.dev-test.pro/auth/login');
 
     //Register page cjntacts details
     this.fullNameFld = page.getByPlaceholder('Full name');
@@ -20,6 +15,7 @@ exports.Registration = class Registration {
     this.confirmPasswordFld = page.getByPlaceholder('Confirm password');
     this.nextStepBtn = page.getByRole('button', { name: 'Next step' });
     this.finishBtn = page.getByRole('button', { name: 'Finish' });
+    this.previousBtn = page.getByRole('button', { name: 'Previous' });
 
     //Register page factories details
     this.factoryNameFld = page.getByPlaceholder('Factory name');
@@ -43,6 +39,10 @@ exports.Registration = class Registration {
     this.averegeOutpTonnageFld = page.getByPlaceholder('Average output tonnage of all');
     this.renewableEnergyFld = page.getByPlaceholder('Renewable Energy (kW.h)')
 
+    this.addFactoryBtn = page.getByRole('button', { name: 'Add factory' });
+    this.newFactoryFormBtn = page.locator('.details__form > div:nth-child(2)');
+    this.deleteFactoryBtn = page.getByRole('button', { name: 'Delete' }).nth(1);
+
     //Errod messages
     this.fullNameErr = page.getByText('Full name is required');
     this.emailErr = page.getByText('E-mail is invalid');
@@ -50,6 +50,8 @@ exports.Registration = class Registration {
     this.phoneNumResErr = page.getByText('Phone number is required');
     this.passwordErrorFirst = page.getByText('Password is too weak').first();
     this.passwordErrorNth1 = page.getByText('Password is too weak').nth(1);
+    this.invalidNumberErr = page.getByText('Invalid Number!');
+    this.passwDontmatchErr = page.getByText(/Passwords don't match/);
 
     this.UserOreadyExistErrorAllert =  page.getByRole('alert');
     this.userOlreadyExsErr = page.getByText('User with this email already exists.');
@@ -64,5 +66,6 @@ exports.Registration = class Registration {
     this.gasTypeReqErr  = page.getByText('Gas Type is required');
     this.avarageOutputTonageReqErr  = page.getByText('Average output tonnage of all products is required');
     this.renewableEnergyIsReqErr  = page.getByText('Renewable Energy is required');
+    this.expectedNumberErr  = page.getByText('Expected number');
   }
 }

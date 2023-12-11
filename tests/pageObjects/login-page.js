@@ -12,8 +12,6 @@ exports.Login = class Login {
     this.passwordPlaceholder = page.getByPlaceholder('Password');
     this.logInBtn = page.getByRole('button', { name: 'Log In' });
 
-
-
     //Errors
     this.emailIsInvalidMessage = page.getByText('Email is invalid');
     this.passwordIsRequiredMessage = page.getByText('Password is required');
@@ -25,6 +23,7 @@ exports.Login = class Login {
   }
 
   async login(email, password) {
+    await this.page.goto('https://dar-ui-supplier.dev-test.pro/')
     await this.emailPlaceholder.fill(email);
     await this.passwordPlaceholder.fill(password);
     await this.logInBtn.click();
