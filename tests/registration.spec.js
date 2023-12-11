@@ -8,7 +8,7 @@ const phoneNumber = '+380979531272';
 const factoryName = 'New Factory Name';
 const numbersVallues = '263'
 
-test.only('Register a user with existing email', async ({ page }) => {
+test('Register a user with existing email', async ({ page }) => {
     const loginPage = new Login(page);
     const registrPage = new Registration(page);
     const address = 'Ukaraine, Ternopil 11';
