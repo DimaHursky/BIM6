@@ -2,17 +2,12 @@ const { expect } = require('@playwright/test');
 
 exports.Login = class Login {
 
-  // /**
-  //  * @param {import('@playwright/test').Page} page
-  //  */
   constructor(page) {
     this.page = page;
     this.registrationTab = page.getByRole('tab', { name: 'Register' });
     this.emailPlaceholder = page.getByPlaceholder('E-mail');
     this.passwordPlaceholder = page.getByPlaceholder('Password');
     this.logInBtn = page.getByRole('button', { name: 'Log In' });
-
-
 
     //Errors
     this.emailIsInvalidMessage = page.getByText('Email is invalid');
