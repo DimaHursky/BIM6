@@ -7,12 +7,12 @@ const password = '12345!Hur';
 const invalidPassword = '12346!Hur';
 const address = 'Ukaraine, Ternopil 11';
 const factoryName = 'New Factory Name';
-const numbersVallues = '263';
+const numbersVallues = '263'
 
-test('Register a user with existing email - 1', async ({ page }) => {
+test('Register a user with existing email', async ({ page }) => {
     const loginPage = new Login(page);
     const registrPage = new Registration(page);
-    
+    const address = 'Ukaraine, Ternopil 11';
     await loginPage.goTo();
     
     //Contacts details page
@@ -31,19 +31,26 @@ test('Register a user with existing email - 1', async ({ page }) => {
     //Factories details page
     await registrPage.factoryNameFld.fill(factoryName);
     await registrPage.cityFld.fill(email);
+
     await registrPage.countryDropD.click();  //Drop down
     await registrPage.ukraineCountry.click(); // paramiter of dropdown
+    
     await registrPage.latitudeFld.fill(email);
     await registrPage.longitudeFld.fill(email);
     await registrPage.annualEnergElectricFld.fill(numbersVallues);
+  
     await registrPage.insertelEctrisityDropD.click();  //Drop down
     await registrPage.europe.click(); // paramiter of dropdown
+
     await registrPage.annualEnergGasFld.fill(numbersVallues);
+    
     await registrPage.insertGasDropD.click(); //Drop down
     await registrPage.bioDisel.click(); // paramiter of dropdown
+
     await registrPage.averegeOutpTonnageFld.fill('23');
+    await page.pause();
     await registrPage.renewableEnergyFld.fill('23');
-    await registrPage.finishBtn.click();
+    await page.getByRole('button', { name: 'Finish' }).click();
 
     expect (await registrPage.UserOreadyExistErrorAllert).toBeDefined();
     expect (await registrPage.userOlreadyExsErr).toBeDefined();

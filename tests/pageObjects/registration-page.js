@@ -46,7 +46,7 @@ exports.Registration = class Registration {
     //Errod messages
     this.fullNameErr = page.getByText('Full name is required');
     this.emailErr = page.getByText('E-mail is invalid');
-    this.addressReqErr = page.getByText('Address is required');
+    this.adressReqErr = page.getByText('Address is required');
     this.phoneNumResErr = page.getByText('Phone number is required');
     this.passwordErrorFirst = page.getByText('Password is too weak').first();
     this.passwordErrorNth1 = page.getByText('Password is too weak').nth(1);

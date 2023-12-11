@@ -2,9 +2,6 @@ const { expect } = require('@playwright/test');
 
 exports.Login = class Login {
 
-  // /**
-  //  * @param {import('@playwright/test').Page} page
-  //  */
   constructor(page) {
     this.page = page;
     this.registrationTab = page.getByRole('tab', { name: 'Register' });
