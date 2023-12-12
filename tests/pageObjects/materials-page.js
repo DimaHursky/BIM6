@@ -32,44 +32,86 @@ exports.Materials = class Mterials {
         this.C4DisposalFld = page.getByPlaceholder('C4: Disposal (kgCO2e)');
         this.DReuseRecoveryRecyclingFld = page.getByPlaceholder('D : Reuse, Recovery,');
         this.A1_A3Fld = page.getByPlaceholder('A1-A3');
+        this.deletePdfFile = page.getByText('Delete');
 
         this.canselBtn = page.getByText('Cancel');
+        this.closelXBtn = page.getByLabel('close');
         this.saveBtn = page.getByText('Save');
 
+        this.statusAllButton = page.getByRole('button', { name: 'Status: All' });
+        this.approvedButton = page.locator('button').filter({ hasText: 'Approved' });
+        this.statusApprovedButton = page.getByRole('button', { name: 'Status: Approved' });
+        this.waitingButton = page.locator('button').filter({ hasText: 'Waiting' });
+        this.statusWaitingButton = page.getByRole('button', { name: 'Status: Waiting' });
+        this.rejectedButton = page.locator('button').filter({ hasText: 'Rejected' });
+        this.statusRejectedButton = page.getByRole('button', { name: 'Status: Rejected' });
+
+
+        this.searchInput = page.getByPlaceholder('Search...');
+        this.searchInput.press('Enter');
+        this.materialCategoryLabel = page.getByLabel('Material Category has been');
+        this.editButtonForRowWithText = page.locator('tr').filter({ hasText: '657868a70fe6fa08e029a173New' }).getByRole('button').nth(1);
+        this.editButton = page.locator('button').filter({ hasText: 'Edit' });
+
+  page.getByPlaceholder('Search...').fill('New Mat Name');
+  page.getByPlaceholder('Search...').press('Enter');
+  page.getByLabel('Material Category has been');
+  page.locator('tr').filter({ hasText: '657868a70fe6fa08e029a173New' }).getByRole('button').nth(1);
+  page.locator('button').filter({ hasText: 'Edit' });
 
 
         //Errors
         this.matirialIsCrweatedPopup = page.getByText('Material has been created');
         this.fileTypeMustBePdfErr = page.getByText('File type must be application/pdf,.pdf');
 
-//           await page.getByText('Save').click();
-//   await page.getByText('Material name is required').click();
-//   await page.getByText('Material category is required').click();
-//   await page.getByText('Factory is required').click();
-//   await page.getByText('A1: Material Extraction (kgCO2e) is required').click();
-//   await page.getByText('A2: Transport to Factory (kgCO2e) is required').click();
-//   await page.getByText('A3: Manufacturing (kgCO2e) is').click();
-//   await page.getByText('A4: Transport to Site (kgCO2e) is required').click();
-//   await page.getByText('A5: Construction (kgCO2e) is').click();
-//   await page.getByText('B1: Use (kgCO2e) is required').first().click();
-//   await page.getByText('B1: Use (kgCO2e) is required').nth(1).click();
-//   await page.getByText('B3: Repair (kgCO2e) is').click();
-//   await page.getByText('B4: Replacement (kgCO2e) is').click();
-//   await page.getByText('B5: Refurbishment (kgCO2e) is').click();
-//   await page.getByText('B6: Operational Energy Use (kgCO2e) is required').click();
-//   await page.getByText('B7: Operational Water Use (kgCO2e) is required').click();
-//   await page.getByText('C1: Deconstruction (kgCO2e) is required').click();
-//   await page.getByText('C2: Transport (kgCO2e) is').click();
-//   await page.getByText('C3: Waste Processing (kgCO2e) is required').click();
-//   await page.getByText('C4: Disposal (kgCO2e) is').click();
-//   await page.getByText('D : Reuse, Recovery, Recycling (kgCO2e) is required').click();
-//   await page.getByText('EPD is required').click();
+
+        this.materialNameError = page.getByText('Material name is required');
+        this.materialCategoryError = page.getByText('Material category is required');
+        this.factoryError = page.getByText('Factory is required');
+        this.a1ExtractionError = page.getByText('A1: Material Extraction (kgCO2e) is required');
+        this.a2TransportToFactoryError = page.getByText('A2: Transport to Factory (kgCO2e) is required');
+        this.a3ManufacturingError = page.getByText('A3: Manufacturing (kgCO2e) is required');
+        this.a4TransportToSiteError = page.getByText('A4: Transport to Site (kgCO2e) is required');
+        this.a5ConstructionError = page.getByText('A5: Construction (kgCO2e) is required');
+        this.b1UseError1 = page.getByText('B1: Use (kgCO2e) is required').first();
+        this.b1UseError2 = page.getByText('B1: Use (kgCO2e) is required').nth(1);
+        this.b3RepairError = page.getByText('B3: Repair (kgCO2e) is required');
+        this.b4ReplacementError = page.getByText('B4: Replacement (kgCO2e) is required');
+        this.b5RefurbishmentError = page.getByText('B5: Refurbishment (kgCO2e) is required');
+        this.b6OperationalEnergyError = page.getByText('B6: Operational Energy Use (kgCO2e) is required');
+        this.b7OperationalWaterError = page.getByText('B7: Operational Water Use (kgCO2e) is required');
+        this.c1DeconstructionError = page.getByText('C1: Deconstruction (kgCO2e) is required');
+        this.c2TransportError = page.getByText('C2: Transport (kgCO2e) is required');
+        this.c3WasteProcessingError = page.getByText('C3: Waste Processing (kgCO2e) is required');
+        this.c4DisposalError = page.getByText('C4: Disposal (kgCO2e) is required');
+        this.dReuseRecyclingError = page.getByText('D : Reuse, Recovery, Recycling (kgCO2e) is required');
+        this.epdError = page.getByText('EPD is required');
 
     }
 
-    async goTo() {
+    async checkIfTheErrorsIsVisible() {
 
-        await this.page.goto('https://dar-ui-supplier.dev-test.pro/');
+        expect(await this.materialNameError).toBeVisible();
+        expect(await this.materialCategoryError).toBeVisible();
+        expect(await this.factoryError).toBeVisible();
+        expect(await this.a1ExtractionError).toBeVisible();
+        expect(await this.a2TransportToFactoryError).toBeVisible();
+        expect(await this.a3ManufacturingError).toBeVisible();
+        expect(await this.a4TransportToSiteError).toBeVisible();
+        expect(await this.a5ConstructionError).toBeVisible();
+        expect(await this.b1UseError1).toBeVisible();
+        expect(await this.b1UseError2).toBeVisible();
+        expect(await this.b3RepairError).toBeVisible();
+        expect(await this.b4ReplacementError).toBeVisible();
+        expect(await this.b5RefurbishmentError).toBeVisible();
+        expect(await this.b6OperationalEnergyError).toBeVisible();
+        expect(await this.b7OperationalWaterError).toBeVisible();
+        expect(await this.c1DeconstructionError).toBeVisible();
+        expect(await this.c2TransportError).toBeVisible();
+        expect(await this.c3WasteProcessingError).toBeVisible();
+        expect(await this.c4DisposalError).toBeVisible();
+        expect(await this.dReuseRecyclingError).toBeVisible();
+        expect(await this.epdError).toBeVisible();
     }
 }
 

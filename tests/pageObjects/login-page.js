@@ -20,7 +20,7 @@ exports.Login = class Login {
   }
 
   async login(email, password) {
-    await this.page.goto('https://dar-ui-supplier.dev-test.pro/')
+    await this.page.goto('https://dar-ui-supplier.dev-test.pro/');
     await this.emailPlaceholder.fill(email);
     await this.passwordPlaceholder.fill(password);
     await this.logInBtn.click();
