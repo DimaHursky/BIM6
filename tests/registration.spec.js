@@ -8,6 +8,7 @@ const invalidPassword = '12346!Hur';
 const address = 'Ukaraine, Ternopil 11';
 const factoryName = 'New Factory Name';
 const numbersVallues = '263'
+const phoneNumber = '+380979531272'
 
 test('Register a user with existing email', async ({ page }) => {
     const loginPage = new Login(page);
