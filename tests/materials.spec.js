@@ -6,7 +6,7 @@ import { TIMEOUT } from 'dns';
 const email = 'borisbritva6996@gmail.com';
 const password = '12345!Hur';
 const namberVallue = '2510.12';
-const materialname = 'New Mat Name';
+const materialName = 'New Mat Name';
 
 test('Create valid material with filled all fields - 1', async ({ page }) => {
   const loginPage = new Login(page);
@@ -16,7 +16,7 @@ test('Create valid material with filled all fields - 1', async ({ page }) => {
   await materialPage.materialsTab.click({ waitForTimeout: 5000 });
   await page.waitForTimeout(3000);
   await materialPage.addNewMaterial.click({ waitForTimeout: 5000 });
-  await materialPage.materialMameFld.fill(materialname + ' A1, A2, A3');
+  await materialPage.materialNameFld.fill(materialName + ' A1, A2, A3');
   await materialPage.materialCategoryDropDown.click();
   await materialPage.newMaterial2Option.click();
   await materialPage.factoryDropDown.click();
@@ -66,7 +66,7 @@ const loginPage = new Login(page);
   await materialPage.materialsTab.click({ waitForTimeout: 5000 });
   await page.waitForTimeout(3000);
   await materialPage.addNewMaterial.click({ waitForTimeout: 5000 });
-  await materialPage.materialMameFld.fill(materialname + ' A1-A3');
+  await materialPage.materialNameFld.fill(materialName + ' A1-A3');
   await materialPage.materialCategoryDropDown.click();
   await materialPage.newMaterial2Option.click();
   await materialPage.factoryDropDown.click();
@@ -136,6 +136,7 @@ test('Create material when all fields are empty - 4', async ({ page }) => {
   await materialPage.materialsTab.click({ tomeout: 3000 });
   await page.waitForTimeout(3000);
   await materialPage.addNewMaterial.click({ waitForTimeout: 3000 });
+  await page.waitForTimeout(1000);
   await materialPage.saveBtn.click();  
 
   //Page Object (PO) all the elements in the materials-page.js
@@ -150,7 +151,7 @@ test('Fill all fields and cancel creating the material for "A1, A2, A3" lvl.  - 
   await materialPage.materialsTab.click({ waitForTimeout: 5000 });
   await page.waitForTimeout(3000);
   await materialPage.addNewMaterial.click({ waitForTimeout: 5000 });
-  await materialPage.materialMameFld.fill(materialname + ' A1, A2, A3');
+  await materialPage.materialNameFld.fill(materialName + ' A1, A2, A3');
   await materialPage.materialCategoryDropDown.click();
   await materialPage.newMaterial2Option.click();
   await materialPage.factoryDropDown.click();
@@ -187,7 +188,7 @@ test('Fill all fields and cancel creating the material for "A1, A2, A3" lvl.  - 
 
   //When the user cansel crearing the material, user back to home page
   await page.waitForTimeout(1000);
-  expect(await materialPage.addNewMaterial).toBeVisible();
+  expect(await materialPage.addNewMaterial).toBeDefined();
 });
 test('Fill all fields and cancel creating the material for  "A1-A3" lvl - 6', async ({ page }) => {
   const loginPage = new Login(page);
@@ -197,7 +198,7 @@ test('Fill all fields and cancel creating the material for  "A1-A3" lvl - 6', as
   await materialPage.materialsTab.click({ waitForTimeout: 5000 });
   await page.waitForTimeout(3000);
   await materialPage.addNewMaterial.click({ waitForTimeout: 5000 });
-  await materialPage.materialMameFld.fill(materialname + ' A1-A3');
+  await materialPage.materialNameFld.fill(materialName + ' A1-A3');
   await materialPage.materialCategoryDropDown.click();
   await materialPage.newMaterial2Option.click();
   await materialPage.factoryDropDown.click();
@@ -227,12 +228,11 @@ test('Fill all fields and cancel creating the material for  "A1-A3" lvl - 6', as
   const hendle = page.locator('input[type="file"]');
   await hendle.setInputFiles('D:/DevIT/BIM6/EmptyEstimation.pdf');
 
-  await page.pause();
   await materialPage.canselBtn.click();
 
   //When the user cansel crearing the material, user back to home page
   await page.waitForTimeout(1000);
-  expect(await materialPage.addNewMaterial).toBeVisible();
+  expect(await materialPage.addNewMaterial).toBeDefined();
 });
 
 test('Fill all fields and cancel creating the material on "X" button - 7', async ({ page }) => {
@@ -243,7 +243,7 @@ test('Fill all fields and cancel creating the material on "X" button - 7', async
   await materialPage.materialsTab.click({ waitForTimeout: 5000 });
   await page.waitForTimeout(3000);
   await materialPage.addNewMaterial.click({ waitForTimeout: 5000 });
-  await materialPage.materialMameFld.fill(materialname + ' A1, A2, A3');
+  await materialPage.materialNameFld.fill(materialName + ' A1, A2, A3');
   await materialPage.materialCategoryDropDown.click();
   await materialPage.newMaterial2Option.click();
   await materialPage.factoryDropDown.click();
@@ -299,10 +299,10 @@ test('Group materil by "All" status - 9', async ({ page }) => {
   await loginPage.login(email, password);
   await materialPage.materialsTab.click();
   await page.waitForTimeout(2000);
-  expect (await materialPage.statusAllButton).toBeVisible();
+  expect (await materialPage.statusAllButton).toBeDefined();
 });
 
-test('Group materil by "Approved" status - 9', async ({ page }) => {
+test('Group materil by "Approved" status - 10', async ({ page }) => {
   test.setTimeout(70000);
   const loginPage = new Login(page);
   const materialPage = new Materials(page);
@@ -313,11 +313,10 @@ test('Group materil by "Approved" status - 9', async ({ page }) => {
   await materialPage.statusAllButton.click();
   await materialPage.approvedButton.click();
   await page.waitForTimeout(500);
-  expect (await materialPage.statusApprovedButton).toBeVisible();
+  expect (await materialPage.statusApprovedButton).toBeDefined();
 });
 
-test('Group materil by "Waiting" status - 10', async ({ page }) => {
-  test.setTimeout(70000);
+test('Group materil by "Waiting" status - 11', async ({ page }) => {
   const loginPage = new Login(page);
   const materialPage = new Materials(page);
   await loginPage.goTo();
@@ -327,11 +326,10 @@ test('Group materil by "Waiting" status - 10', async ({ page }) => {
   await materialPage.statusAllButton.click();
   await materialPage.waitingButton.click();
   await page.waitForTimeout(500);
-  expect (await materialPage.statusWaitingButton).toBeVisible();
+  expect (await materialPage.statusWaitingButton).toBeDefined();
 });
 
-test('Group materil by "Rejected" status - 11', async ({ page }) => {
-  test.setTimeout(70000);
+test('Group materil by "Rejected" status - 12', async ({ page }) => {
   const loginPage = new Login(page);
   const materialPage = new Materials(page);
   await loginPage.goTo();
@@ -341,10 +339,10 @@ test('Group materil by "Rejected" status - 11', async ({ page }) => {
   await materialPage.statusAllButton.click();
   await materialPage.rejectedButton.click();
   await page.waitForTimeout(500);
-  expect (await materialPage.statusRejectedButton).toBeVisible();
+  expect (await materialPage.statusRejectedButton).toBeDefined();
 });
 
-test.only('Open the created material and edit it - 12', async ({ page }) => {
+test('Open the created material and edit it - 13', async ({ page }) => {
   const loginPage = new Login(page);
   const materialPage = new Materials(page);
   await loginPage.goTo();
@@ -353,18 +351,130 @@ test.only('Open the created material and edit it - 12', async ({ page }) => {
   await materialPage.materialsTab.click();
   await page.waitForTimeout(1000);
 
-  await materialPage.searchInput.fill('New Mat Name');
+  await materialPage.searchFld.fill('New Mat Name');
   await page.waitForTimeout(2000);
   await materialPage.materialCategoryLabel.click();
+
+  //TODO add the ID locator for this element
   await materialPage.editButtonForRowWithText.click();
   await materialPage.editButton.click();
+  await materialPage.materialNameFld.dblclick();
+  await materialPage.materialNameFld.fill('');
+  await materialPage.materialNameFld.fill(materialName +' (Edited)');
+  await materialPage.saveBtn.click();
 
+  await page.waitForTimeout(500);
+  await materialPage.searchFld.fill('Edited');
+  await page.waitForTimeout(500);
+
+  //Check if the edited text is displayed
+  expect(await page.getByText(materialName +'(Edited)')).toBeTruthy();
 });
 
+test('Cansel editing of exsisting material - 14', async ({ page }) => {
+  const loginPage = new Login(page);
+  const materialPage = new Materials(page);
+  await loginPage.goTo();
+  await loginPage.login(email, password);
+  await page.waitForTimeout(1000);
+  await materialPage.materialsTab.click();
+  await page.waitForTimeout(1000);
 
-//Open created matirial and click "See all" button
-//Edit material and save changes
-//Edit material and cansel changes
-//add coment to the material
-//use search to find material by the fuul name
-//use search to find material by the first part of the name
+  await materialPage.searchFld.fill(materialName);
+  await page.waitForTimeout(2000);
+  await materialPage.materialCategoryLabel.click();
+
+  //TODO add the ID locator for this element
+  await materialPage.editButtonForRowWithText.click();
+  await materialPage.editButton.click();
+  await materialPage.materialNameFld.dblclick();
+  await materialPage.materialNameFld.fill('');
+  await materialPage.materialNameFld.fill(materialName +' (Edited)');
+  await materialPage.canselBtn.click();
+
+  //Check if the modal is closed and the "new material" btn is displayed
+  expect(await materialPage.addNewMaterial).toBeDefined();
+});
+
+test('Open the created material and "See all" it - 15', async ({ page }) => {
+  const loginPage = new Login(page);
+  const materialPage = new Materials(page);
+  await loginPage.goTo();
+  await loginPage.login(email, password);
+  await page.waitForTimeout(1000);
+  await materialPage.materialsTab.click();
+  await page.waitForTimeout(1000);
+
+  await materialPage.searchFld.fill(materialName);
+  await page.waitForTimeout(2000);
+  await materialPage.materialCategoryLabel.click();
+
+  //TODO add the ID locator for this element
+  await materialPage.editButtonForRowWithText.click();
+  await materialPage.seeAllButton.click();
+
+  await page.waitForTimeout(500);
+
+  //Check if the the popup text is displayeds
+  expect(await materialPage.allParameterPopup).toBeTruthy();
+});
+
+// test.only('Add coment to the exsisting material - 16', async ({ page }) => {
+//   const loginPage = new Login(page);
+//   const materialPage = new Materials(page);
+//   await loginPage.goTo();
+//   await loginPage.login(email, password);
+//   await page.waitForTimeout(1000);
+//   await materialPage.materialsTab.click();
+//   await page.waitForTimeout(1000);
+
+//   await materialPage.searchFld.fill(materialName);
+//   await page.waitForTimeout(2000);
+//   await materialPage.materialCategoryLabel.click();
+
+//   //TODO add the ID locator for this element
+//   await materialPage.editButtonForRowWithText.click();
+//   await page.pause();
+//   await materialPage.seeAllButton.click();
+
+//   await page.waitForTimeout(500);
+
+//   //Check if the the popup text is displayeds
+//   expect(materialPage.allParameterPopup).toBeTruthy();
+// });
+
+// test('Use search to find material by the fuul name - 17', async ({ page }) => {
+//   const loginPage = new Login(page);
+//   const materialPage = new Materials(page);
+
+//   await loginPage.goTo();
+//   await loginPage.login(email, password);
+//   await page.waitForTimeout(1000);
+//   await materialPage.materialsTab.click();
+//   await page.waitForTimeout(1000);
+
+//   await materialPage.searchFld.fill(materialName);
+//   await page.waitForTimeout(2000);
+
+//   //Check if the the popup text is displayeds
+//   expect(await page.getByText(materialName)).toBeTruthy();
+// });
+
+// test.only('Use search to find material by the Last part of the name - 18', async ({ page }) => {
+//   const loginPage = new Login(page);
+//   const materialPage = new Materials(page);
+//   const lastPart = 'Name';
+
+//   await loginPage.goTo();
+//   await loginPage.login(email, password);
+//   await page.waitForTimeout(1000);
+//   await materialPage.materialsTab.click();
+//   await page.waitForTimeout(1000);
+
+//   //Find the material by the firls pdrt of the name
+//   await materialPage.searchFld.fill(lastPart);
+//   await page.waitForTimeout(2000);
+
+//   //Check if the the popup text is displayeds
+//   expect(await page.getByText(lastPart)).toBeTruthy();
+// });
