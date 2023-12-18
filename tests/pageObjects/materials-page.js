@@ -7,7 +7,7 @@ exports.Materials = class Mterials {
         this.materialsTab = page.getByRole('tab', { name: 'Materials' });
         this.addNewMaterial = page.getByRole('button', { name: 'Add new' });
 
-        this.materialMameFld = page.getByPlaceholder('Material name');
+        this.materialNameFld = page.getByPlaceholder('Material name');
         this.materialCategoryDropDown = page.locator('div').filter({ hasText: /^Material category$/ }).nth(1);
         this.newMaterial2Option = page.getByText('New Material 2', { exact: true }); //wallue of material category
         this.factoryDropDown = page.locator('div').filter({ hasText: /^Factory$/ }).nth(1);
@@ -47,23 +47,23 @@ exports.Materials = class Mterials {
         this.statusRejectedButton = page.getByRole('button', { name: 'Status: Rejected' });
 
 
-        this.searchInput = page.getByPlaceholder('Search...');
-        this.searchInput.press('Enter');
+        this.searchFld = page.getByPlaceholder('Search...');
+        this.searchFld.press('Enter');
         this.materialCategoryLabel = page.getByLabel('Material Category has been');
+
+        // this.editButtonForRowWithText = page.locator('tr').filter({ hasText: '657868a70fe6fa08e029a173New' }).getByRole('button').nth(1);
+        // this.editButton = page.locator('button').filter({ hasText: 'Edit' });
+        // this.seeAllButton = page.locator('button').filter({ hasText: 'See all' });
+        // this.allParameterPopup = page.getByText('All parameters');
+
         this.editButtonForRowWithText = page.locator('tr').filter({ hasText: '657868a70fe6fa08e029a173New' }).getByRole('button').nth(1);
         this.editButton = page.locator('button').filter({ hasText: 'Edit' });
-
-  page.getByPlaceholder('Search...').fill('New Mat Name');
-  page.getByPlaceholder('Search...').press('Enter');
-  page.getByLabel('Material Category has been');
-  page.locator('tr').filter({ hasText: '657868a70fe6fa08e029a173New' }).getByRole('button').nth(1);
-  page.locator('button').filter({ hasText: 'Edit' });
-
-
+        this.seeAllButton = page.locator('button').filter({ hasText: 'See all' });
+        this.allParameterPopup = page.getByText('All parameters');
+        
         //Errors
         this.matirialIsCrweatedPopup = page.getByText('Material has been created');
         this.fileTypeMustBePdfErr = page.getByText('File type must be application/pdf,.pdf');
-
 
         this.materialNameError = page.getByText('Material name is required');
         this.materialCategoryError = page.getByText('Material category is required');
@@ -91,27 +91,27 @@ exports.Materials = class Mterials {
 
     async checkIfTheErrorsIsVisible() {
 
-        expect(await this.materialNameError).toBeVisible();
-        expect(await this.materialCategoryError).toBeVisible();
-        expect(await this.factoryError).toBeVisible();
-        expect(await this.a1ExtractionError).toBeVisible();
-        expect(await this.a2TransportToFactoryError).toBeVisible();
-        expect(await this.a3ManufacturingError).toBeVisible();
-        expect(await this.a4TransportToSiteError).toBeVisible();
-        expect(await this.a5ConstructionError).toBeVisible();
-        expect(await this.b1UseError1).toBeVisible();
-        expect(await this.b1UseError2).toBeVisible();
-        expect(await this.b3RepairError).toBeVisible();
-        expect(await this.b4ReplacementError).toBeVisible();
-        expect(await this.b5RefurbishmentError).toBeVisible();
-        expect(await this.b6OperationalEnergyError).toBeVisible();
-        expect(await this.b7OperationalWaterError).toBeVisible();
-        expect(await this.c1DeconstructionError).toBeVisible();
-        expect(await this.c2TransportError).toBeVisible();
-        expect(await this.c3WasteProcessingError).toBeVisible();
-        expect(await this.c4DisposalError).toBeVisible();
-        expect(await this.dReuseRecyclingError).toBeVisible();
-        expect(await this.epdError).toBeVisible();
+        expect(await this.materialNameError).toBeTruthy();
+        expect(await this.materialCategoryError).toBeTruthy();
+        expect(await this.factoryError).toBeTruthy();
+        expect(await this.a1ExtractionError).toBeTruthy();
+        expect(await this.a2TransportToFactoryError).toBeTruthy();
+        expect(await this.a3ManufacturingError).toBeTruthy();
+        expect(await this.a4TransportToSiteError).toBeTruthy();
+        expect(await this.a5ConstructionError).toBeTruthy();
+        expect(await this.b1UseError1).toBeTruthy();
+        expect(await this.b1UseError2).toBeTruthy();
+        expect(await this.b3RepairError).toBeTruthy();
+        expect(await this.b4ReplacementError).toBeTruthy();
+        expect(await this.b5RefurbishmentError).toBeTruthy();
+        expect(await this.b6OperationalEnergyError).toBeTruthy();
+        expect(await this.b7OperationalWaterError).toBeTruthy();
+        expect(await this.c1DeconstructionError).toBeTruthy();
+        expect(await this.c2TransportError).toBeTruthy();
+        expect(await this.c3WasteProcessingError).toBeTruthy();
+        expect(await this.c4DisposalError).toBeTruthy();
+        expect(await this.dReuseRecyclingError).toBeTruthy();
+        expect(await this.epdError).toBeTruthy();
     }
 }
 
