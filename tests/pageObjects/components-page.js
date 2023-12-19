@@ -182,8 +182,7 @@ exports.Components = class Components {
         await this.categoryDropDown.click();
         await this.newMaterialVallue.click();
 
-        await this.materialFld
-          .click();
+        await this.materialFld.click();
         await this.materiallVallue.click();
         await this.persentageFld.fill(persantegeVallue);
 

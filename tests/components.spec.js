@@ -148,6 +148,7 @@ test('Fill invalid data into General fields - 5 ', async ({ page }) => {
   await compPage.addNewButton.click();
 
   //Page object 
+  
   // 1 General chapter
   await compPage.productCategoryDropDown.click();
   await compPage.newCategoryVallue.click();
