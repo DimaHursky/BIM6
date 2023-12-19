@@ -79,6 +79,17 @@ exports.Components = class Components {
         this.categoryIsRequiredErr = page.getByText('Category is required').nth(1);
         this.materialIsRequiredErr2 = page.getByText('Material is required').nth(1);
         this.percentageIsRequiredErr = page.getByText('Percentage is required').nth(1);
+        this.expectedNumberErr1 = page.getByText('Expected number').first();
+        this.expectedNumberErr2 = page.getByText('Expected number').nth(1);
+        this.expectedNumberErr3 = page.getByText('Expected number').nth(2);
+      
+      // 4 Additional chapter
+        this.expectedNumberAddotionalErr1 = page.locator('.MuiFormHelperText-root').first();
+        this.expectedNumberAddotionalErr2 = page.locator('div:nth-child(2) > .MuiStack-root > .MuiFormHelperText-root');
+        this.expectedNumberAddotionalErr3 = page.locator('div:nth-child(3) > .MuiStack-root > .MuiFormHelperText-root');
+        this.expectedNumberAddotionalErr4 = page.locator('div:nth-child(4) > .MuiStack-root > .MuiFormHelperText-root');
+        this.expectedNumberAddotionalErr5 = page.locator('div:nth-child(5) > .MuiStack-root > .MuiFormHelperText-root');
+        this.expectedNumberAddotionalErr6 = page.locator('.additional__cost > .MuiStack-root > .MuiFormHelperText-root');
 
     }
 
@@ -131,7 +142,7 @@ exports.Components = class Components {
         await this.avarageOutputTonegeFld.fill(avarageOutputTonege); 
         await this.nextStepButton.click();
 
-        //Additional chapter
+        // 4 Additional chapter
         await this.annualFactoryWasteOutputFld.fill(numbersVallue);
         await this.annualAnnualFactoryWaterFld.fill(numbersVallue);
         await this.percentageOpProductReusedFld.fill(numbersVallue);
@@ -141,7 +152,7 @@ exports.Components = class Components {
         await this.currensyDropDown.click()
         await this.usdVallue.click();
         await this.ownershipModelFld.fill(numbersVallue);
-        await this.maintenanceRecommendationsFld.fill(numbersVallue)
+        await this.maintenanceRecommendationsFld.fill(numbersVallue);
 
         await this.nextStepButton.click();
     }
@@ -171,7 +182,8 @@ exports.Components = class Components {
         await this.categoryDropDown.click();
         await this.newMaterialVallue.click();
 
-        await this.materialFld.click();
+        await this.materialFld
+          .click();
         await this.materiallVallue.click();
         await this.persentageFld.fill(persantegeVallue);
 
